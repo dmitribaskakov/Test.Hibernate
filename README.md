@@ -2,7 +2,7 @@
 
 #### 1: PostgresSQL in docker container
 
-Имя сервера: test.db.postgres
+Имя докер имиджа: test.db.postgres
 
 Адресс: 127.0.0.1:5432
 
