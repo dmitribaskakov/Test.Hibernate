@@ -1,13 +1,11 @@
 package org.home.hibernate;
 
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.home.hibernate.entity.User;
 
+@Log4j2
 public class Main {
-    static Logger log = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
         // сразу получаем готовый SessionFactory и сразу создаем сессию
@@ -23,7 +21,7 @@ public class Main {
         //закрываем тренкзакцию
         session.getTransaction().commit();
         //System.out.println("user.getId()=" + user.getId());
-        log.log(Level.INFO, "user.getId()=" + user.getId());
+        log.info("user.getId()=" + user.getId());
 
         session.close();
         HibernateUtil.close();
