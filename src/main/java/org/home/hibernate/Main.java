@@ -14,8 +14,8 @@ public class Main {
         //открываем тренкзакцию
         session.getTransaction().begin();
         User user = new User();
-        user.setEmail("newfromapp24@#mail.ru");
-        user.setUsername("newfromapp24");
+        user.setEmail("newfromapp25@#mail.ru");
+        user.setUsername("newfromapp25");
         user.setPassword("password");
         session.save(user);
         //закрываем тренкзакцию
