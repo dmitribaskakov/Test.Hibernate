@@ -2,6 +2,7 @@ package org.home.hibernate;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
 import java.io.File;
 
 // спец. Java класс для инициализации Hibernate
