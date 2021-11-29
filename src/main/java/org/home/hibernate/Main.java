@@ -30,12 +30,15 @@ public class Main {
 
         ArrayList<Long> ids = new ArrayList<>(List.of(
                 users2.get(0).getId(),
-                users2.get(1).getId(),
+                users2.get(1).getId()));
+        int res = TestJPACriteriaAPI.UpdateUserByID(session, ids);
+        log.info("TestJPACriteriaAPI.UpdateUserByID res=" + res);
+
+        ArrayList<Long> ids2 = new ArrayList<>(List.of(
                 users2.get(2).getId(),
-                users2.get(3).getId(),
-                users2.get(4).getId()));
-        int res = TestJPACriteriaAPI.DeleteUserByID(session, ids);
-        log.info("TestJPACriteriaAPI.DeleteUserByID res=" + res);
+                users2.get(3).getId()));
+        int res2 = TestJPACriteriaAPI.DeleteUserByID(session, ids2);
+        log.info("TestJPACriteriaAPI.DeleteUserByID res=" + res2);
 
         List<User> users3 = TestJPACriteriaAPI.GetUsersWhere(session);
         log.info("TestJPACriteriaAPI.GetUsersWhere users3.size()=" + users3.size());

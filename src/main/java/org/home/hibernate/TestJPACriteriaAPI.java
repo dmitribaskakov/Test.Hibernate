@@ -17,10 +17,11 @@ public class TestJPACriteriaAPI {
     /**
      * Выборка данных с помощью JPA Criteria API.
      * Получение списка всех пользователей
+     *
      * @param session - текущая сессия hibernate
      * @return List<User> список всех пользователей
      */
-    public static List<User> GetAllUsers(Session session){
+    public static List<User> GetAllUsers(Session session) {
         // Подготовка запроса - Получение списка всех пользователей
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
@@ -34,10 +35,11 @@ public class TestJPACriteriaAPI {
     /**
      * Выборка данных с помощью JPA Criteria API.
      * Получение списка пользователей по условию
+     *
      * @param session - текущая сессия hibernate
      * @return List<User> список всех пользователей
      */
-    public static List<User> GetUsersWhere(Session session){
+    public static List<User> GetUsersWhere(Session session) {
         // Подготовка запроса - Получение списка всех пользователей
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
         CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
@@ -54,11 +56,12 @@ public class TestJPACriteriaAPI {
     /**
      * Удаление данных с помощью JPA Criteria API.
      * Удаление списка пользователей
+     *
      * @param session - текущая сессия hibernate
-     * @param ids - список id для удаления
+     * @param ids     - список id для удаления
      * @return int количество удаленных пользователей
      */
-    public static int DeleteUserByID(Session session, ArrayList<Long> ids){
+    public static int DeleteUserByID(Session session, ArrayList<Long> ids) {
         int query = 0;
         // Подготовка запроса - Удаление списка пользователей
         CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
@@ -66,8 +69,8 @@ public class TestJPACriteriaAPI {
         Root<User> userRoot = criteriaDelete.from(User.class);
         // Выполнение запроса - Удаление списка пользователей
         Transaction transaction = session.beginTransaction();
-        for (Long id: ids) {
-            log.info("Удаление пользователя id="+id);
+        for (Long id : ids) {
+            log.info("Удаление пользователя id=" + id);
             criteriaDelete.where(criteriaBuilder.equal(userRoot.get("id"), id));
             query += session.createQuery(criteriaDelete).executeUpdate();
         }
@@ -75,4 +78,33 @@ public class TestJPACriteriaAPI {
         return query;
     }
 
+
+    /**
+     * Обновление данных с помощью JPA Criteria API.
+     * Обновление списка пользователей
+     * @param session - текущая сессия hibernate
+     * @param ids - список id для обновления
+     * @return int количество удаленных пользователей
+     */
+    public static int UpdateUserByID(Session session, ArrayList<Long> ids) {
+        int query = 0;
+        // Подготовка запроса - Обновление списка пользователей
+        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        CriteriaUpdate<User> criteriaUpdate;
+        Root<User> userRoot;
+        // Выполнение запроса - Обновление списка пользователей
+        Transaction transaction = session.beginTransaction();
+        for (Long id : ids) {
+            log.info("Обновление пользователя id=" + id.toString());
+            criteriaUpdate = criteriaBuilder.createCriteriaUpdate(User.class);
+            userRoot = criteriaUpdate.from(User.class);
+            criteriaUpdate.set("email", id.toString()+"@mail.ru");
+            criteriaUpdate.set("username", id.toString());
+            criteriaUpdate.set("password", id.toString());
+            criteriaUpdate.where(criteriaBuilder.equal(userRoot.get("id"), id));
+            query += session.createQuery(criteriaUpdate).executeUpdate();
+        }
+        transaction.commit();
+        return query;
+    }
 }
