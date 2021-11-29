@@ -4,10 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.home.hibernate.entity.User;
 
-import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -23,8 +20,25 @@ public class Main {
 
         //Получение списка всех пользователей
         //Выборка данных с помощью JPA Criteria API. Получение списка всех пользователей
-        List<User> users = testJPACriteriaAPIGetAllUsers(session);
-        log.info("users.size()=" + users.size());
+        List<User> users = TestJPACriteriaAPI.GetAllUsers(session);
+        log.info("TestJPACriteriaAPI.GetAllUsers users.size()=" + users.size());
+
+
+        //Выборка данных с помощью JPA Criteria API. Получение списка пользователей по условию
+        List<User> users2 = TestJPACriteriaAPI.GetUsersWhere(session);
+        log.info("TestJPACriteriaAPI.GetUsersWhere users2.size()=" + users2.size());
+
+        ArrayList<Long> ids = new ArrayList<>(List.of(
+                users2.get(0).getId(),
+                users2.get(1).getId(),
+                users2.get(2).getId(),
+                users2.get(3).getId(),
+                users2.get(4).getId()));
+        int res = TestJPACriteriaAPI.DeleteUserByID(session, ids);
+        log.info("TestJPACriteriaAPI.DeleteUserByID res=" + res);
+
+        List<User> users3 = TestJPACriteriaAPI.GetUsersWhere(session);
+        log.info("TestJPACriteriaAPI.GetUsersWhere users3.size()=" + users3.size());
 
         session.close();
         HibernateUtil.close();
@@ -45,24 +59,6 @@ public class Main {
         session.getTransaction().commit();
         return user;
     }
-
-    /**
-     * Выборка данных с помощью JPA Criteria API.
-     * Получение списка всех пользователей
-     * @param session - текущая сессия hibernate
-     * @return List<User> список всех пользователей
-     */
-    public static List<User> testJPACriteriaAPIGetAllUsers(Session session){
-        // Подготовка запроса - Получение списка всех пользователей
-        CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
-        Root<User> userRoot = criteriaQuery.from(User.class);
-        criteriaQuery.select(userRoot);
-        // Выполнение запроса - Получение списка всех пользователей
-        Query query = session.createQuery(criteriaQuery);
-        return (List<User>) query.getResultList();
-    }
-
 
 
 }
