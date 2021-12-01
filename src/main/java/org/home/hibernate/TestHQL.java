@@ -38,6 +38,11 @@ public class TestHQL {
         user2.getCategories().forEach(log::info);
         log.info("HQL.GetUserById.getPriorities 2:");
         user2.getPriorities().forEach(log::info);
+        log.info("HQL.GetUserById.getActivity 2:");
+        log.info(user2.getActivity().toString());
+        log.info("HQL.GetUserById.getStat 2:");
+        log.info(user2.getStat().toString());
+
 
 //        Long res = GetUserCountByEmail(session, "%@mail.ru%");
 //        log.info("HQL.GetUserCountByEmail=" + res);

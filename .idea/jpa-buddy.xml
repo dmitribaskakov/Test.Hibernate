@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JpaBuddyIdeaProjectConfig">
+  <component name="JpaBuddyIdeaProjectConfig" migrateIndexesAndConstraints="false">
     <option name="defaultUnitInitialized" value="true" />
     <option name="reverseEngineeringLastDbConnectionId" value="86c1c5cf-2246-4e96-847a-61a12c45ba7e_todolist" />
     <option name="reLastEntityCreationPackage" value="src/main/java/org/home/hibernate/entity" />

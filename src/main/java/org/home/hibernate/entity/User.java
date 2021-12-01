@@ -33,6 +33,12 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Priority> priorities;
 
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Activity activity;
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    private Stat stat;
+
     @Override
     public String toString() {
         return "User{" +
