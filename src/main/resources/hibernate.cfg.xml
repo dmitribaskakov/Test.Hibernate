@@ -8,18 +8,17 @@
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.username">postgres</property>
         <property name="connection.password">password</property>
+        <property name="hibernate.default_catalog">test_hibernate</property>
         <property name="hibernate.default_schema">todolist</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
-
         <property name="hibernate.current_session_context_class">thread</property>
-
         <!--        <property name="hibernate.show_sql">true</property>-->
         <!--        <property name="hibernate.format_sql">true</property>-->
         <!--        <property name="hibernate.highlight_sql">true</property>-->
-
         <mapping class="org.home.hibernate.entity.Activity"/>
         <mapping class="org.home.hibernate.entity.Category"/>
         <mapping class="org.home.hibernate.entity.Priority"/>
+        <mapping class="org.home.hibernate.entity.Role"/>
         <mapping class="org.home.hibernate.entity.Stat"/>
         <mapping class="org.home.hibernate.entity.User"/>
         <!-- DB schema will be updated if needed -->

@@ -42,6 +42,8 @@ public class TestHQL {
         log.info(user2.getActivity().toString());
         log.info("HQL.GetUserById.getStat 2:");
         log.info(user2.getStat().toString());
+        log.info("HQL.GetUserById.getRoles 2:");
+        user2.getRoles().forEach(log::info);
 
 
 //        Long res = GetUserCountByEmail(session, "%@mail.ru%");

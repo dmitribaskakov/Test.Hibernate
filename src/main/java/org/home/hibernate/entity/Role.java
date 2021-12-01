@@ -4,41 +4,32 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
-@Table(name = "activity")
+@Table(name = "role_data")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Activity {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "activated", nullable = false)
-    @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean activated;
+    private String name;
 
-    @Column(updatable = false)
-    private String uuid;
-
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
-    private User user;
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private Set<User> users;
 
     @Override
     public String toString() {
-        return "Activity{" +
+        return "Role{" +
                 "id=" + id +
-                ", activated=" + activated +
-                ", uuid='" + uuid + '\'' +
-                ", user=" + user +
+                ", name='" + name + '\'' +
                 '}';
     }
 
@@ -46,8 +37,8 @@ public class Activity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Activity activity = (Activity) o;
-        return id.equals(activity.id);
+        Role role = (Role) o;
+        return id.equals(role.id);
     }
 
     @Override

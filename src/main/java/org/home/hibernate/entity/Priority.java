@@ -6,9 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "priority", schema = "todolist", catalog = "test_hibernate")
+@Table(name = "priority")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -34,5 +35,18 @@ public class Priority {
                 ", color='" + color + '\'' +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Priority priority = (Priority) o;
+        return id.equals(priority.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
