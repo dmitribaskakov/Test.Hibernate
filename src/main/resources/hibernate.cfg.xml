@@ -18,6 +18,8 @@
         <!--        <property name="hibernate.highlight_sql">true</property>-->
 
         <mapping class="org.home.hibernate.entity.User"/>
+        <mapping class="org.home.hibernate.entity.Category"/>
+        <mapping class="org.home.hibernate.entity.Priority"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
     </session-factory>

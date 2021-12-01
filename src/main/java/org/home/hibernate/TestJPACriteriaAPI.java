@@ -13,6 +13,30 @@ import java.util.List;
 @Log4j2
 public class TestJPACriteriaAPI {
 
+    public static void Test(Session session){
+        //Получение списка всех пользователей
+        List<User> users = TestJPACriteriaAPI.GetAllUsers(session);
+        log.info("TestJPACriteriaAPI.GetAllUsers users.size()=" + users.size());
+
+        //Получение списка пользователей по условию
+        List<User> users2 = TestJPACriteriaAPI.GetUsersWhere(session);
+        log.info("JPACriteriaAPI.GetUsersWhere users2.size()=" + users2.size());
+
+        ArrayList<Long> ids = new ArrayList<>(List.of(
+                users2.get(0).getId(),
+                users2.get(1).getId()));
+        int res = TestJPACriteriaAPI.UpdateUserByID(session, ids);
+        log.info("JPACriteriaAPI.UpdateUserByID res=" + res);
+
+        ArrayList<Long> ids2 = new ArrayList<>(List.of(
+                users2.get(2).getId(),
+                users2.get(3).getId()));
+        int res2 = TestJPACriteriaAPI.DeleteUserByID(session, ids2);
+        log.info("JPACriteriaAPI.DeleteUserByID res=" + res2);
+
+        List<User> users3 = TestJPACriteriaAPI.GetUsersWhere(session);
+        log.info("JPACriteriaAPI.GetUsersWhere users3.size()=" + users3.size());
+    }
 
     /**
      * Выборка данных с помощью JPA Criteria API.
@@ -98,7 +122,7 @@ public class TestJPACriteriaAPI {
             log.info("Обновление пользователя id=" + id.toString());
             criteriaUpdate = criteriaBuilder.createCriteriaUpdate(User.class);
             userRoot = criteriaUpdate.from(User.class);
-            criteriaUpdate.set("email", id.toString()+"@mail.ru");
+            criteriaUpdate.set("email", id +"@mail.ru");
             criteriaUpdate.set("username", id.toString());
             criteriaUpdate.set("password", id.toString());
             criteriaUpdate.where(criteriaBuilder.equal(userRoot.get("id"), id));
