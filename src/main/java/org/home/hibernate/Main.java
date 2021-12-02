@@ -8,30 +8,26 @@ import org.home.hibernate.entity.User;
 public class Main {
 
     public static void main(String[] args) {
-        // Получаем готовый SessionFactory и сразу создаем сессию
-        Session session = HibernateUtil.getSessionFactory().openSession();
-//
-//        //Создание нового пользователя
-//        User user = testCreateNewUser(session);
-//        log.info("user.getId()=" + user.getId());
-//
+        //Создание нового пользователя
+        //testCreateNewUser();
 
         //Выборка данных с помощью JPA Criteria API
-        //TestJPACriteriaAPI.Test(session);
+        //TestJPACriteriaAPI.Test();
 
         //Выборка данных с помощью HQL
-        TestHQL.Test(session);
+        //TestHQL.Test();
 
-        session.close();
-        HibernateUtil.close();
+        //Кеширование L2C
+        TestCacheable.Test();
+
     }
 
     /**
      * Создание нового пользователя
-     * @param session- текущая сессия hibernate
-     * @return User - созданный новый пользователь
      */
-    public static User testCreateNewUser(Session session){
+    public static void testCreateNewUser(){
+        // Получаем готовый SessionFactory и сразу создаем сессию
+        Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
         User user = new User();
         user.setEmail("newfromapp27@#mail.ru");
@@ -39,7 +35,9 @@ public class Main {
         user.setPassword("password");
         session.save(user);
         session.getTransaction().commit();
-        return user;
+        log.info("user.getId()=" + user.getId());
+        session.close();
+        HibernateUtil.close();
     }
 
 

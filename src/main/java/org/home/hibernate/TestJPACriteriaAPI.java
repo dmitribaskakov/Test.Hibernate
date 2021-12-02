@@ -13,7 +13,10 @@ import java.util.List;
 @Log4j2
 public class TestJPACriteriaAPI {
 
-    public static void Test(Session session){
+    public static void Test(){
+        // Получаем готовый SessionFactory и сразу создаем сессию
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
         //Получение списка всех пользователей
         List<User> users = TestJPACriteriaAPI.GetAllUsers(session);
         log.info("TestJPACriteriaAPI.GetAllUsers users.size()=" + users.size());
@@ -36,6 +39,9 @@ public class TestJPACriteriaAPI {
 
         List<User> users3 = TestJPACriteriaAPI.GetUsersWhere(session);
         log.info("JPACriteriaAPI.GetUsersWhere users3.size()=" + users3.size());
+
+        session.close();
+        HibernateUtil.close();
     }
 
     /**

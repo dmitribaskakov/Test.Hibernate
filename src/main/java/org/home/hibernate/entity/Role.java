@@ -4,17 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "role_data")
+@Table(name = "role_data", schema = "todolist", catalog = "test_hibernate")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable(value = true)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

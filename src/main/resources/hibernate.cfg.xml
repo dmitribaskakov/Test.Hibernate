@@ -12,6 +12,12 @@
         <property name="hibernate.default_schema">todolist</property>
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
         <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <!--        при клике на класс JCacheRegionFactory - если он открывается, значит все подклучили верно-->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</property>
+<!--        <property name="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</property>-->
+
         <!--        <property name="hibernate.show_sql">true</property>-->
         <!--        <property name="hibernate.format_sql">true</property>-->
         <!--        <property name="hibernate.highlight_sql">true</property>-->

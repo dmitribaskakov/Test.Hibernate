@@ -4,17 +4,20 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "activity")
+@Table(name = "activity", schema = "todolist", catalog = "test_hibernate")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Cacheable(value = true)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 
 public class Activity {
     @Id

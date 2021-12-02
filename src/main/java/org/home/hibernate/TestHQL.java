@@ -16,9 +16,12 @@ public class TestHQL {
      * HQL/JPQL – более упрощенный и сокращенный вариант стандартного синтаксиса SQL.
      * JPQL – Java Persistence Query Language – из стандарта JPA
      * HQL – Hibernate Query Language – более расширенная версия JPQL
-     * @param session - текущая сессия hibernate
      */
-    public static void Test(Session session){
+    public static void Test(){
+
+        // Получаем готовый SessionFactory и сразу создаем сессию
+        Session session = HibernateUtil.getSessionFactory().openSession();
+
 //        //Получение списка всех пользователей
 //        List<User> users = TestHQL.GetAllUsers(session);
 //        log.info("HQL.GetAllUsers users.size()=" + users.size());
@@ -62,6 +65,9 @@ public class TestHQL {
 //            log.info(obj[1]);
 //            log.info("----");
 //        }
+
+        session.close();
+        HibernateUtil.close();
 
     }
 
