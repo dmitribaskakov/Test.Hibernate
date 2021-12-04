@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "role_data", schema = "todolist")
@@ -26,8 +25,8 @@ public class Role {
 
     private String name;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private Set<User> users;
+//    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+//    private Set<User> users;
 
     @Override
     public String toString() {

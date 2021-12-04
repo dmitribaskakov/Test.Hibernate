@@ -33,19 +33,19 @@ public class TestHQL {
 //        User user = GetUserById(session, 10039L);
 //        log.info("HQL.GetUserById=" + user);
 
-        //Получение пользователя по ID
-        User user2 = GetUserById(session, 10039L);
-        log.info("HQL.GetUserById 2=" + user2);
-        log.info("HQL.GetUserById.getCategories 2:");
-        user2.getCategories().forEach(log::info);
-        log.info("HQL.GetUserById.getPriorities 2:");
-        user2.getPriorities().forEach(log::info);
-        log.info("HQL.GetUserById.getActivity 2:");
-        log.info(user2.getActivity().toString());
-        log.info("HQL.GetUserById.getStat 2:");
-        log.info(user2.getStat().toString());
-        log.info("HQL.GetUserById.getRoles 2:");
-        user2.getRoles().forEach(log::info);
+//        //Получение пользователя по ID
+//        User user2 = GetUserById(session, 10039L);
+//        log.info("HQL.GetUserById 2=" + user2);
+//        log.info("HQL.GetUserById.getCategories 2:");
+//        user2.getCategories().forEach(log::info);
+//        log.info("HQL.GetUserById.getPriorities 2:");
+//        user2.getPriorities().forEach(log::info);
+//        log.info("HQL.GetUserById.getActivity 2:");
+//        log.info(user2.getActivity().toString());
+//        log.info("HQL.GetUserById.getStat 2:");
+//        log.info(user2.getStat().toString());
+//        log.info("HQL.GetUserById.getRoles 2:");
+//        user2.getRoles().forEach(log::info);
 
 
 //        Long res = GetUserCountByEmail(session, "%@mail.ru%");

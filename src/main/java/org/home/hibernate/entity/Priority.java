@@ -27,9 +27,9 @@ public class Priority {
 
     private String color;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
-    private User user;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
+//    private User user;
 
     @Override
     public String toString() {
@@ -37,7 +37,7 @@ public class Priority {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", color='" + color + '\'' +
-                ", user=" + user +
+                //", user=" + user +
                 '}';
     }
 

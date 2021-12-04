@@ -33,16 +33,16 @@ public class Task {
     private Date taskDate;
 
     // задача может иметь только один приоритет (с обратной стороны - один и тот же приоритет может быть использоваться в множестве задач)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "priority_id", referencedColumnName = "id") // по каким полям связывать (foreign key)
     private Priority priority;
 
     // задача может иметь только одну категорию (с обратной стороны - одна и та же категория может быть использоваться в множестве задач)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id") // по каким полям связывать (foreign key)
     private Category category;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id") // по каким полям связывать (foreign key)
     private User user; // для какого пользователя задача
 

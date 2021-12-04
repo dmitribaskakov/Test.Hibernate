@@ -31,9 +31,9 @@ public class Category {
     @Column(name = "uncompleted_count", updatable = false)
     private Long uncompletedCount;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
-    private User user;
+//    @ManyToOne(optional = false)
+//    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
+//    private User user;
 
     @Override
     public String toString() {
@@ -42,7 +42,7 @@ public class Category {
                 ", title='" + title + '\'' +
                 ", completedCount=" + completedCount +
                 ", uncompletedCount=" + uncompletedCount +
-                ", user=" + user +
+                //", user=" + user +
                 '}';
     }
 

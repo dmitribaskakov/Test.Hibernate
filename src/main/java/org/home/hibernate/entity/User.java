@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -55,26 +55,26 @@ public class User {
     @Column(name = "userpassword", nullable = false, length = -1)
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Task> tasks;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Category> categories;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Priority> priorities;
-
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = false)
-    private Activity activity;
-
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = false)
-    private Stat stat;
-
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
+
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Task> tasks;
+//
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Category> categories;
+//
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Priority> priorities;
+//
+//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = false)
+//    private Activity activity;
+//
+//    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, optional = false)
+//    private Stat stat;
 
 
     @Override

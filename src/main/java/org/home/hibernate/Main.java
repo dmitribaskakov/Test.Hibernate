@@ -20,7 +20,10 @@ public class Main {
         //Кеширование L2C
         //TestCacheable.Test();
 
-        TestTask.Test();
+        //TestTask.Test();
+
+
+        TestNewUser.Test();
     }
 
     /**

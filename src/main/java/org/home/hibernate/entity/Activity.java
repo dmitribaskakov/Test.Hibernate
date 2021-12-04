@@ -31,7 +31,7 @@ public class Activity {
     @Column(updatable = false)
     private String uuid;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @MapsId
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
