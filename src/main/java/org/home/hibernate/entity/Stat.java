@@ -16,7 +16,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 
 public class Stat {
     @Id
@@ -30,7 +30,8 @@ public class Stat {
     @Column(name = "uncompleted_total", updatable = false)
     private Long uncompletedTotal;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 

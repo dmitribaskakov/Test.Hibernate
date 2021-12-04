@@ -17,7 +17,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @NoArgsConstructor
 @Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 
 public class Activity {
     @Id
@@ -31,7 +31,8 @@ public class Activity {
     @Column(updatable = false)
     private String uuid;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
     @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 

@@ -25,7 +25,7 @@ public class Main {
     /**
      * Создание нового пользователя
      */
-    public static void testCreateNewUser(){
+    public static void testCreateNewUser() {
         // Получаем готовый SessionFactory и сразу создаем сессию
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.getTransaction().begin();
@@ -40,5 +40,28 @@ public class Main {
         HibernateUtil.close();
     }
 
+    /**
+     * Удаление пользователя
+     */
+    public static void testDeleteUser() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.getTransaction().begin();
+        User user;
+
+        // Способ 1
+        user = session.get(User.class, 10025L);
+        session.remove(user);
+
+        // Способ 2
+        user = new User();
+        user.setId(10025L);
+        session.remove(user);
+
+        session.getTransaction().commit();
+        log.info("user.getId()=" + user.getId());
+        session.close();
+        HibernateUtil.close();
+
+    }
 
 }
