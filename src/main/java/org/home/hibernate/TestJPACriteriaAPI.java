@@ -1,12 +1,12 @@
 package org.home.hibernate;
 
+import jakarta.persistence.criteria.*;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.home.hibernate.entity.User;
 
-import javax.persistence.Query;
-import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 

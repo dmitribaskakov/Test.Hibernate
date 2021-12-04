@@ -1,25 +1,24 @@
 package org.home.hibernate.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "user_data", schema = "todolist", catalog = "test_hibernate")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Cacheable(value = true)
+@Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-
+@Entity
+@Table(name = "user_data", schema = "todolist", catalog = "test_hibernate")
 public class User {
     @Id
     @Column(name = "id", nullable = false)

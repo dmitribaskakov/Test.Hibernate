@@ -3,12 +3,11 @@ package org.home.hibernate;
 import lombok.extern.log4j.Log4j2;
 import org.hibernate.Session;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import org.home.hibernate.entity.User;
 
-import javax.persistence.Query;
 import java.util.List;
 @Log4j2
-
 
 public class TestHQL {
 

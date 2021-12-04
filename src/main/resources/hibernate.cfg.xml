@@ -21,12 +21,12 @@
         <!--        <property name="hibernate.show_sql">true</property>-->
         <!--        <property name="hibernate.format_sql">true</property>-->
         <!--        <property name="hibernate.highlight_sql">true</property>-->
+        <mapping class="org.home.hibernate.entity.User"/>
         <mapping class="org.home.hibernate.entity.Activity"/>
         <mapping class="org.home.hibernate.entity.Category"/>
         <mapping class="org.home.hibernate.entity.Priority"/>
         <mapping class="org.home.hibernate.entity.Role"/>
         <mapping class="org.home.hibernate.entity.Stat"/>
-        <mapping class="org.home.hibernate.entity.User"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
     </session-factory>

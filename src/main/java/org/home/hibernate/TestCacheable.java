@@ -8,44 +8,25 @@ import org.home.hibernate.entity.User;
 public class TestCacheable {
 
     public static void Test() {
-        // Получаем готовый SessionFactory и сразу создаем сессию
-        Session session1 = HibernateUtil.getSessionFactory().openSession();
+        log.info("Hibernate 1 started");
 
-        //Получение пользователя по ID
-        User user1 = TestHQL.GetUserById(session1, 10039L);
-        log.info("HQL.GetUserById =" + user1);
-        log.info("HQL.GetUserById.getCategories:");
-        user1.getCategories().forEach(log::info);
-        log.info("HQL.GetUserById.getPriorities:");
-        user1.getPriorities().forEach(log::info);
-        log.info("HQL.GetUserById.getActivity:");
-        log.info(user1.getActivity().toString());
-        log.info("HQL.GetUserById.getStat:");
-        log.info(user1.getStat().toString());
-        log.info("HQL.GetUserById.getRoles:");
-        user1.getRoles().forEach(log::info);
+        //сразу получаем готовый SessionFactory и сразу создаем сессию
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-        session1.close();
+        User u1 = session.get(User.class, 10040L);
+        log.info(u1);
+        //u1.getCategories().forEach(log::info);
+        session.close();// закрыть первуб сессию
 
-        log.info("Новая сессия. все данные берутся из кеша");
+        // откроем новую сессию
+        log.info("Hibernate 2 started");
+        session = HibernateUtil.getSessionFactory().openSession();
+        User u2 = session.get(User.class, 10040L); // должен получить его из L2C
+        log.info(u2);
+        //u2.getCategories().forEach(log::info);
 
-        Session session2 = HibernateUtil.getSessionFactory().openSession();
-        //Получение пользователя по ID
-        User user2 = TestHQL.GetUserById(session2, 10039L);
-        log.info("HQL.GetUserById =" + user2);
-        log.info("HQL.GetUserById.getCategories:");
-        user2.getCategories().forEach(log::info);
-        log.info("HQL.GetUserById.getPriorities:");
-        user2.getPriorities().forEach(log::info);
-        log.info("HQL.GetUserById.getActivity:");
-        log.info(user2.getActivity().toString());
-        log.info("HQL.GetUserById.getStat:");
-        log.info(user2.getStat().toString());
-        log.info("HQL.GetUserById.getRoles:");
-        user2.getRoles().forEach(log::info);
-        session2.close();
+        session.close();// закрыть сессию
 
-
-        HibernateUtil.close();
+        HibernateUtil.close(); // закрыть Session Factory - очищается кеш 2го уровня
     }
 }
