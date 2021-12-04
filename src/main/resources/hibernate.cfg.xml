@@ -26,6 +26,7 @@
         <mapping class="org.home.hibernate.entity.Priority"/>
         <mapping class="org.home.hibernate.entity.Role"/>
         <mapping class="org.home.hibernate.entity.Stat"/>
+        <mapping class="org.home.hibernate.entity.Task"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
     </session-factory>

@@ -11,7 +11,7 @@ import org.hibernate.annotations.Type;
 import java.util.Objects;
 
 @Entity
-@Table(name = "activity", schema = "todolist", catalog = "test_hibernate")
+@Table(name = "activity", schema = "todolist")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,7 +26,7 @@ public class Activity {
 
     @Column(name = "activated", nullable = false)
     @Type(type = "org.hibernate.type.NumericBooleanType")
-    private boolean activated;
+    private boolean activated;  // 1 = true, 0 = false
 
     @Column(updatable = false)
     private String uuid;

@@ -18,8 +18,9 @@ public class Main {
         //TestHQL.Test();
 
         //Кеширование L2C
-        TestCacheable.Test();
+        //TestCacheable.Test();
 
+        TestTask.Test();
     }
 
     /**

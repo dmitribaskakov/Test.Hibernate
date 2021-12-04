@@ -10,7 +10,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import java.util.Objects;
 
 @Entity
-@Table(name = "priority", schema = "todolist", catalog = "test_hibernate")
+@Table(name = "priority", schema = "todolist")
 @Getter
 @Setter
 @AllArgsConstructor

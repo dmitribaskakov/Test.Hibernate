@@ -41,7 +41,7 @@ TRANSACTIONAL – Самый строгий и медленный из всех.
 NONE – отключение – entity не будет кешироваться
  **/
 @Entity
-@Table(name = "user_data", schema = "todolist", catalog = "test_hibernate")
+@Table(name = "user_data", schema = "todolist")
 public class User {
     @Id
     @Column(name = "id", nullable = false)
@@ -54,6 +54,9 @@ public class User {
 
     @Column(name = "userpassword", nullable = false, length = -1)
     private String password;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Task> tasks;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Category> categories;
@@ -72,6 +75,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
 
     @Override
     public String toString() {

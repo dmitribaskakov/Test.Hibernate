@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "role_data", schema = "todolist", catalog = "test_hibernate")
+@Table(name = "role_data", schema = "todolist")
 @Getter
 @Setter
 @AllArgsConstructor
