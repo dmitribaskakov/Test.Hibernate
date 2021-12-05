@@ -49,7 +49,7 @@ public class TestDAO {
 
         UserDAOImpl userDAO = new UserDAOImpl();
 
-        User user = userDAO.get(20028L);
+        User user = userDAO.get(10025L);
 
 
         // создаем справочные значения
@@ -57,14 +57,14 @@ public class TestDAO {
 
         Priority priority = new Priority();
         priority.setColor("#fff");
-        priority.setTitle("Новый приоритет");
+        priority.setTitle("Новый приоритет Y");
         priority.setUser(user);
         priorityDAO.add(priority);
 
         CategoryDAOImpl categoryDAO = new CategoryDAOImpl();
 
         Category category = new Category();
-        category.setTitle("Новая категория");
+        category.setTitle("Новая категория Y");
         category.setUser(user);
         categoryDAO.add(category);
 
@@ -72,7 +72,7 @@ public class TestDAO {
 
         Task task = new Task();
         task.setUser(user);
-        task.setTitle("Супер новая задача222");
+        task.setTitle("Супер новая задача Y");
         task.setCategory(category);
         task.setPriority(priority);
         task.setTaskDate(new Date());
