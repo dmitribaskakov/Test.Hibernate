@@ -1,9 +1,10 @@
-package org.home.hibernate.dao;
+package org.home.hibernate.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.home.hibernate.HibernateUtil;
+import org.home.hibernate.dao.interfaces.objects.TaskDAO;
 import org.home.hibernate.entity.Task;
 
 import java.util.List;
@@ -90,7 +91,6 @@ public class TaskDAOImpl implements TaskDAO {
         transaction.commit();
         session.close();
     }
-
 
     /**
      * Получение списка задач по email

@@ -1,14 +1,15 @@
-package org.home.hibernate.dao;
+package org.home.hibernate.dao.impl;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.home.hibernate.HibernateUtil;
+import org.home.hibernate.dao.interfaces.objects.UserDAO;
 import org.home.hibernate.entity.User;
 
 import java.util.List;
 
-public class UserDAOImpl implements CommonDAO<User>{
+public class UserDAOImpl implements UserDAO {
 
     /**
      * Получение списка всех пользователей
@@ -35,6 +36,21 @@ public class UserDAOImpl implements CommonDAO<User>{
         List<User> users = query.getResultList();
         session.close();
         return users;
+    }
+
+    /**
+     * Получение пользователя по email
+     * @param email значение для столбца email.
+     * @return User пользователь
+     */
+    @Override
+    public User getByEmail(String email) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query query = session.createQuery("From User Where email = :email");
+        query.setParameter("email", email);
+        User user = (User) query.uniqueResult();
+        session.close();
+        return user;
     }
 
     /**
@@ -90,4 +106,6 @@ public class UserDAOImpl implements CommonDAO<User>{
         transaction.commit();
         session.close();
     }
+
+
 }
