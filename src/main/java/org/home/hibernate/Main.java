@@ -8,22 +8,15 @@ import org.home.hibernate.entity.User;
 public class Main {
 
     public static void main(String[] args) {
-        //Создание нового пользователя
-        //testCreateNewUser();
-
-        //Выборка данных с помощью JPA Criteria API
-        //TestJPACriteriaAPI.Test();
-
-        //Выборка данных с помощью HQL
-        //TestHQL.Test();
-
-        //Кеширование L2C
-        //TestCacheable.Test();
-
+        //testCreateNewUser(); //Создание нового пользователя
+        //TestJPACriteriaAPI.Test(); //Выборка данных с помощью JPA Criteria API
+        //TestHQL.Test(); //Выборка данных с помощью HQL
+        //TestCacheable.Test(); //Кеширование L2C
         //TestTask.Test();
+        //TestNewUser.Test();
 
+        TestDAO.Test();
 
-        TestNewUser.Test();
     }
 
     /**
