@@ -21,21 +21,21 @@ public class TestHQL {
         // Получаем готовый SessionFactory и сразу создаем сессию
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-//        //Получение списка всех пользователей
-//        List<User> users = TestHQL.GetAllUsers(session);
-//        log.info("HQL.GetAllUsers users.size()=" + users.size());
+        //Получение списка всех пользователей
+        List<User> users = TestHQL.GetAllUsers(session);
+        log.info("HQL.GetAllUsers users.size()=" + users.size());
 
-//        //Получение списка пользователей по условию
-//        List<User> users2 = GetUsersWhere(session, 0, 10);
-//        log.info("HQL.GetUsersWhere users2.size()=" + users2.size());
+        //Получение списка пользователей по условию
+        List<User> users2 = GetUsersWhere(session, 0, 10);
+        log.info("HQL.GetUsersWhere users2.size()=" + users2.size());
 
-//        //Получение пользователя по ID
-//        User user = GetUserById(session, 10039L);
-//        log.info("HQL.GetUserById=" + user);
+        //Получение пользователя по ID
+        User user = GetUserById(session, 10039L);
+        log.info("HQL.GetUserById=" + user);
 
-//        //Получение пользователя по ID
-//        User user2 = GetUserById(session, 10039L);
-//        log.info("HQL.GetUserById 2=" + user2);
+        //Получение пользователя по ID
+        User user2 = GetUserById(session, 10039L);
+        log.info("HQL.GetUserById 2=" + user2);
 //        log.info("HQL.GetUserById.getCategories 2:");
 //        user2.getCategories().forEach(log::info);
 //        log.info("HQL.GetUserById.getPriorities 2:");
@@ -44,26 +44,26 @@ public class TestHQL {
 //        log.info(user2.getActivity().toString());
 //        log.info("HQL.GetUserById.getStat 2:");
 //        log.info(user2.getStat().toString());
-//        log.info("HQL.GetUserById.getRoles 2:");
-//        user2.getRoles().forEach(log::info);
+        log.info("HQL.GetUserById.getRoles 2:");
+        user2.getRoles().forEach(log::info);
 
 
-//        Long res = GetUserCountByEmail(session, "%@mail.ru%");
-//        log.info("HQL.GetUserCountByEmail=" + res);
-//
-//        //Получение списка пользователей с указанным email через Native SQL
-//        List<User> users3 = GetUsersByEmail(session, "%@mail.ru%", 0, 10);
-//        log.info("Native SQL.GetUsersByEmail users3.size()=" + users3.size());
-//
-//        //Получение статистики по доменам пользователей через Native SQL
-//        //Object stat =
-//
-//        Object[][] objs = GetStatisticByUsersDomain(session);
-//        for(Object[] obj: objs) {
-//            log.info(obj[0]);
-//            log.info(obj[1]);
-//            log.info("----");
-//        }
+        Long res = GetUserCountByEmail(session, "%@mail.ru%");
+        log.info("HQL.GetUserCountByEmail=" + res);
+
+        //Получение списка пользователей с указанным email через Native SQL
+        List<User> users3 = GetUsersByEmail(session, "%@mail.ru%", 0, 10);
+        log.info("Native SQL.GetUsersByEmail users3.size()=" + users3.size());
+
+        //Получение статистики по доменам пользователей через Native SQL
+        //Object stat =
+
+        Object[][] objs = GetStatisticByUsersDomain(session);
+        for(Object[] obj: objs) {
+            log.info(obj[0]);
+            log.info(obj[1]);
+            log.info("----");
+        }
 
         session.close();
         HibernateUtil.close();

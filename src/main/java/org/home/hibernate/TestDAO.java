@@ -5,21 +5,22 @@ import org.home.hibernate.dao.impl.*;
 import org.home.hibernate.entity.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Log4j2
 public class TestDAO {
     public static void Test(){
-//        UserDAOImpl userDAO = new UserDAOImpl();
-//        User user = userDAO.get(20028L);
-//        user.setEmail("user122200@#mail.ru");
-//        user.setUsername("user122200");
-//        user.setPassword("password");
-//        userDAO.update(user);
-//        log.info("user.getId()=" + user.getId());
+        UserDAOImpl userDAO = new UserDAOImpl();
+        User user = userDAO.get(20028L);
+        user.setEmail("user122200@#mail.ru");
+        user.setUsername("user122200");
+        user.setPassword("password");
+        userDAO.update(user);
+        log.info("user.getId()=" + user.getId());
 
-//        TaskDAOImpl taskDAO = new TaskDAOImpl();
-//        List<Task> tasks = taskDAO.find(true, "10033@mail.ru");
-//        log.info("task.getId()=" + tasks);
+        TaskDAOImpl taskDAO = new TaskDAOImpl();
+        List<Task> tasks = taskDAO.find(true, "10033@mail.ru");
+        log.info("task.getId()=" + tasks);
 
 //        создаем пользователя (триггеры создадут сразу же тестовые данные)
 //        активируем пользователя (поле activated)
@@ -31,25 +32,23 @@ public class TestDAO {
 //        считываем статистику по любой категории пользователя
 //        считываем общую статистику пользователя
 
+        // создаем пользователя (триггеры создадут сразу же тестовые данные)
+        user = new User();
+        user.setUsername("testuser");
+        user.setPassword("testuser");
+        user.setEmail("testuser@gmail.com");
 
-//        // создаем пользователя (триггеры создадут сразу же тестовые данные)
-//        User user = new User();
-//        user.setUsername("testuser");
-//        user.setPassword("testuser");
-//        user.setEmail("testuser@gmail.com");
-//
-//        UserDAOImpl userDAO = new UserDAOImpl();
-//        userDAO.add(user);
-//
-//        // активируем пользователя (поле activated)
-//        ActivityDAOImpl activityDAO = new ActivityDAOImpl();
-//        Activity activity = activityDAO.getByUser(user);
-//        activity.setActivated(true);
-//        activityDAO.update(activity);
+        userDAO = new UserDAOImpl();
+        userDAO.add(user);
 
-        UserDAOImpl userDAO = new UserDAOImpl();
+        // активируем пользователя (поле activated)
+        ActivityDAOImpl activityDAO = new ActivityDAOImpl();
+        Activity activity = activityDAO.getByUser(user.getEmail());
+        activity.setActivated(true);
+        activityDAO.update(activity);
 
-        User user = userDAO.get(10025L);
+        userDAO = new UserDAOImpl();
+        user = userDAO.get(10025L);
 
 
         // создаем справочные значения
@@ -68,7 +67,7 @@ public class TestDAO {
         category.setUser(user);
         categoryDAO.add(category);
 
-        TaskDAOImpl taskDAO = new TaskDAOImpl();
+        taskDAO = new TaskDAOImpl();
 
         Task task = new Task();
         task.setUser(user);
